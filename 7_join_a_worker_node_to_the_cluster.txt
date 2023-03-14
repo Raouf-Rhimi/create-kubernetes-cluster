@@ -1,0 +1,35 @@
+# This documentation is issued from kubernetes official documentation at "https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/"
+# At this moment, our cluster contains two separeted nodes. A controlplane node "MasterNode" and a worker node "worker01". We should make the worker node "node01" join the kubernetes cluster.
+
+=> Run the command that was output by kubeadm init:
+ kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
+
+===> VERY IMPORTANT: copy this command from the output of kubeadm init(View section 5).
+
+=> You should see an output similar to this:
+========================================================================================
+[preflight] Running pre-flight checks
+
+... (log output of join workflow) ...
+
+Node join complete:
+* Certificate signing request sent to control-plane and response
+  received.
+* Kubelet informed of new secure connection details.
+
+Run 'kubectl get nodes' on control-plane to see this machine join.
+========================================================================================
+
+=> Go to controlplane node "masternode" and run this command:
+kubectl get nodes
+# You should see an output that contains two nodes: "masternode" and "worker01"
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Now, Since you are a DevOps engineer, Go configure a second worker node named "worker02" and make it join the cluster by yourself.      |                  |
+Ladies and Gentleman, We are finished.                                                                                                  |
+----------------------------------------------------------------------------------------------------------------------------------------

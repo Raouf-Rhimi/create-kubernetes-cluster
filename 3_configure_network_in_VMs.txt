@@ -1,0 +1,55 @@
+# This documentation is issued from kubernetes official documentation at "https://kubernetes.io/docs/setup/production-environment/container-runtimes/"
+# After successfully installing CRI in our VMs, now we are going to configure network dependencies in all of the VMs.
+
+=> Forwarding IPv4 and letting iptables see bridged traffic:
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilte
+
+=> Sysctl params required by setup, params persist across reboots:
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward = 1
+EOF
+
+=> Apply sysctl params without reboot:
+sudo sysctl --system
+
+=> Verify that the br_netfilter, overlay modules are loaded by running below instructions:
+lsmod | grep br_netfilter
+lsmod | grep overlay
+
+=> Verify system variables(net.bridge.bridge-nf-call-iptables, net.bridge.bridge-nf-call-ip6tables, net.ipv4.ip_forward) are set to 1 :
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+
+
+===> VERY IMPORTANT: We should configure "systemd" as a cgroup for containerd.
+
+=> Open containerd configuration file located at: /etc/containerd/config.toml
+sudo vim /etc/containerd/config.toml
+
+=> Delete the entire content of the file and replace it with :
+#=============================================================================== Don't copy this line.
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
+#===============================================================================  Don't copy this line.
+
+=> Restart the containerd service:
+sudo systemctl restart containerd
+
+=> Check the status of containerd service:
+systemctl status containerd
+
+
+
+
+
+--------------------------------------------------------------------
+Now you're a network expert. Let's move on to the next step.        |
+--------------------------------------------------------------------

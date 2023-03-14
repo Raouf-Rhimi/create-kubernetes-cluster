@@ -1,0 +1,32 @@
+# This documentation is issued from weaveworks official documentation at "https://www.weave.works/docs/net/latest/kubernetes/kube-addon/"
+# In this section, we are going to set up a pod network addon "weave-net". You can use any other addon from the list given at "https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy".
+
+=> Deploy a weave-net daemonset in the controlplane node:
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+=> verify that weave-net daemonset is deployed in the controlplane node:
+kubectl get ds -n kube-system | grep weave-net
+# You should see an output contains weave-net.
+kubectl get pods -n kube-system | grep weave-net
+# You should see an output contains a list of all available pods in kube-system namespace including  weave-net.
+
+
+===> VERY IMPORTANT: we used the flag --pod-network-cidr=10.244.0.0/16 when we initialized the controlplane node.
+# Now we should configure weave-net addon to use the 10.244.0.0/16 range address when creating pods. For that we need to:
+
+=> Edit weave-net manifest file in the controlplane :
+kubectl edit daemonset weave-net -n kube-system
+
+=> Look for the environment variables for the "weave" container.
+=> Add a new environment variable named "IPALLOC_RANGE".Set it's value to "10.244.0.0/16"
+=> Save the file. This should delete the existing two pods for the weave-net daemonset and create a brand new two.
+=> If you've noticed, before configuring weave-net pod network addon, there was two pods named core-dns in the kube-system namespace stuck in pending state. Now after configuring 
+weave-net, they should be in running state. Otherwise, restart the VM and they will be in running state.
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Now open LinkedIn and post:"I am delighted to share with you that i am a DevOps expert".You should receive an offer from Google in the next 24 hours.    |    |
+---------------------------------------------------------------------------------------------------------------------------------------------------------

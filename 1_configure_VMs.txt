@@ -1,0 +1,31 @@
+# In this section, we've worked with VMware and ubuntu image.
+# Follow these steps to configure your VMs:
+
+=> Get the status of the VMs:
+hostnamectl status
+
+=> Change the name of the machine:
+hostnamectl set-hostname <NAME_OF_THE_MACHINE>
+
+=> Delete the resident machine-id for all the VMs:
+rm -f /etc/machine-id
+
+=> Generate a new machine-id for all the VMs:
+dbus-uuidgen --ensure=/etc/machine-id
+
+=> Set static IP for every VM in the cluster:
+static IP
+network mask
+default gateway
+DNS server(s)
+
+===> VERY IMPORTANT: make sure that all the VMs are in the same network and they are reachable from each other !!!.
+
+
+
+
+
+
+----------------------------------------------------------
+See, it's not that hard.                                  |
+----------------------------------------------------------
