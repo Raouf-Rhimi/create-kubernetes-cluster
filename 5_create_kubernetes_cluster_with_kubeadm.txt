@@ -15,7 +15,7 @@
 sudo kubeadm init --apiserver-advertise-address=192.168.147.100 --pod-network-cidr=10.244.0.0/16
 ===> VERY IMPORTANT: the --apiserver-advertise-address flag is set to the static IP of the VM that will host the master node.
 ===> VERY IMPORTANT: the --pod-network-cidr flag is set to 10.244.0.0/16. Remember well this address because we will use it later with "weave-net" Pod network addon.
-# After running this command, you have to wail a few minutes. To verify if the controlplane node is running, you should see an output like this:
+# After running this command, you have to wait a few minutes. To verify if the controlplane node is running, you should see an output like this:
 
 ========================================================================================================================================================================================
 Your Kubernetes control-plane has initialized successfully!
