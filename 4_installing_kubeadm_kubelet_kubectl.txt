@@ -32,3 +32,5 @@ sudo apt-mark hold kubelet kubeadm kubectl
 --------------------------------------------------------------------
 We are nearly done. Be patient Ladies and Gentleman.                  |
 --------------------------------------------------------------------
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl:~:text=a%20package%20manager-,Kubernetes%20package%20repositories,-These%20instructions%20are
