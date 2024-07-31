@@ -5,6 +5,7 @@
  kubeadm join <control-plane-host>:<control-plane-port> --token <token> --discovery-token-ca-cert-hash sha256:<hash>
 
 ===> VERY IMPORTANT: copy this command from the output of kubeadm init(View section 5).
+If you don't have a token, you can generate new one by executing this command: kubeadm token create --print-join-command
 
 => You should see an output similar to this:
 ========================================================================================
