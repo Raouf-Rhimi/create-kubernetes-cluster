@@ -35,5 +35,5 @@ kubectl apply -f deployments/daemon-set/nginx-ingress.yaml
 => Finally,Confirm NGINX Ingress Controller is running:
 kubectl get pods --namespace=nginx-ingress
 
-=> Make sure that the pods are in the running state
+=> Make sure that the pods are in the running state, then you go to the browser and visit this URL: "http://{{WORKER_NODE_IP_ADDRESS}}". you should see an nginx 404 not found page. This means that the NGINX ingress controller works fine.
 
