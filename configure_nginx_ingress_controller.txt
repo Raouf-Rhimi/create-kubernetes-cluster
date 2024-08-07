@@ -1,1 +1,13 @@
 In this section, we are going to configure nginx ingress controller for our cluster. this instructions are made from "https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/".
+
+=> Clone the NGINX Ingress Controller repository using the command shown below, and replace <version_number> with the specific release you want to use. In our case, we will use th version v3.6.1:
+git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.6.1
+
+=> change into the kubernetes-ingress folder:
+cd kubernetes-ingress
+
+=> Create a namespace and a service account:
+kubectl apply -f deployments/common/ns-and-sa.yaml
+
+=> Create a cluster role and binding for the service account:
+kubectl apply -f deployments/rbac/rbac.yaml
