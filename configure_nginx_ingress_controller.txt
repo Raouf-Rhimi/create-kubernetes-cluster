@@ -1,4 +1,4 @@
-In this section, we are going to configure nginx ingress controller for our cluster. this instructions are made from "https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/".
+In this section, we are going to configure nginx ingress controller for our cluster. These instructions are made from the official documentation at "https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/".
 
 => Clone the NGINX Ingress Controller repository using the command shown below, and replace <version_number> with the specific release you want to use. In our case, we will use th version v3.6.1:
 git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.6.1
