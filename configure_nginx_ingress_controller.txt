@@ -1,0 +1,1 @@
+In this section, we are going to configure nginx ingress controller for our cluster. this instructions are made from "https://docs.nginx.com/nginx-ingress-controller/installation/installing-nic/installation-with-manifests/".
