@@ -21,6 +21,8 @@ DNS server(s)
 
 ===> VERY IMPORTANT: make sure that all the VMs are in the same network and they are reachable from each other !!!.
 
+To enable copying from host machine into VMWare VM use this command:
+sudo apt update && sudo apt install open-vm-tools open-vm-tools-desktop -y
 
 
 
